@@ -23,6 +23,18 @@ function TaskTracker() {
         setTasks(tasks.filter((_, i) => i !== index));
     };
 
+    const updateTask = (index, newText, newDate) => {
+        if (!newText.trim() || !newDate) {
+            setError("Both fields are required to update!"); 
+            return;
+        }
+        setError("");
+        const updatedTasks = tasks.map((t, i) =>
+            i === index ? { text: newText, date: newDate } : t
+        );
+        setTasks(updatedTasks);
+    };
+
     return (
         <div className="task-tracker">
             <div className="task-container">
@@ -47,7 +59,6 @@ function TaskTracker() {
                         />
                         <button className="save-btn" onClick={addTask}>Save</button>
 
-                        {}
                         {error && <p style={{ color: "red", marginTop: "5px" }}>{error}</p>}
 
                         <div className="task-list">
@@ -57,6 +68,18 @@ function TaskTracker() {
                                     <span>{t.date}</span>
                                     <button className="delete-btn" onClick={() => deleteTask(index)}>
                                         Delete
+                                    </button>
+                                    <button
+                                        className="upt-btn"
+                                        onClick={() => {
+                                            const newText = prompt("Update task text:", t.text);
+                                            const newDate = prompt("Update task date:", t.date);
+                                            if (newText !== null && newDate !== null) {
+                                                updateTask(index, newText, newDate);
+                                            }
+                                        }}
+                                    >
+                                        Update
                                     </button>
                                 </div>
                             ))}

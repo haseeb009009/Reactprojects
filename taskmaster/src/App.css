@@ -93,3 +93,17 @@ input {
 .delete-btn:hover {
     background: darkred;
 }
+
+/* update Button */
+.upt-btn {
+    background: rgb(3, 3, 3);
+    color: white;
+    border: none;
+    padding: 5px 5px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.upt-btn:hover {
+    background: rgba(95, 95, 95, 0.521);
+}
